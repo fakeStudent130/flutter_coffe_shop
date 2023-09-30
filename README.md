@@ -4,13 +4,21 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+- tema aplikasi: 
+	coffe shop
 
-A few resources to get you started if this is your first Flutter project:
+- BE
+	- registrasi (login, logout)
+		crud (email, username, password)
+	- get all coffe
+		- get data
+		- search
+		- filter
+	-transaksi(soon)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- front end (mobile)
+	- slicing ui
+	- get API
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+LINK Figma:
+https://www.figma.com/file/E4v2MalCoN8sLNXAZefPr3/Coffee-Shop-Mobile-App-Design-(Community)?type=design&node-id=202%3A476&mode=dev
