@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_shop/presentation/pages/menu_detail.dart';
 import 'package:flutter_coffee_shop/utils/components/buttons/primary_button.dart';
 import 'package:flutter_coffee_shop/utils/components/buttons/primary_button_icon.dart';
 import 'package:flutter_coffee_shop/utils/components/field/search_field.dart';
@@ -29,7 +30,9 @@ class _HomePageState extends State<HomePage> {
           children: [
             PrimaryButton(
               teks: 'Get Started',
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, MenuDetailPage.routeName);
+              },
             ),
             const SizedBox(
               height: 60,
