@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Coffee',
         theme: StyleTheme.themeData(),
-        initialRoute: OnboardingPage.routeName,
+        initialRoute: HomePage.routeName,
         routes: {
           OnboardingPage.routeName: (context) => const OnboardingPage(),
           HomePage.routeName: (context) => const HomePage(),
