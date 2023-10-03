@@ -9,3 +9,6 @@ const Color kBrown2 = Color(0xff313131);
 const Color kGrey = Color(0xff8D8D8D);
 const Color kGreen = Color(0xff36C07E);
 const Color kGrey2 = Color(0xffA9A9A9);
+const Color kGrey3 = Color(0xff9B9B9B);
+const Color kWhite2 = Color(0xffF9F9F9);
+const Color kWhite3 = Color(0xffEAEAEA);
