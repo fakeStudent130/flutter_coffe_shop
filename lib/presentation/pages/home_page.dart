@@ -142,21 +142,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ],
-              //
-              // const SizedBox(
-              //   height: 60,
-              // ),
-              // PrimaryIconButton(
-              //   iconData: Icons.add,
-              //   onPressed: () {},
-              // ),
-              // const SizedBox(
-              //   height: 60,
-              // ),
-              // SearchField(
-              //   textEditingController: _searchController,
-              //   hintText: 'Search coffee',
-              // ),
             ),
           ),
           const SizedBox(height: 20),
