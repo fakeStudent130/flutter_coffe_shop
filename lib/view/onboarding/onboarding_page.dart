@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/presentation/pages/home_page.dart';
+import 'package:flutter_coffee_shop/view/home/page/home_page.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
 
 import '../../utils/components/buttons/primary_button.dart';

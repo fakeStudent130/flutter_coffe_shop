@@ -1,14 +1,14 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/presentation/widgets/menu_icon.dart';
+import 'package:flutter_coffee_shop/view/home/widgets/menu_icon.dart';
 import 'package:flutter_coffee_shop/utils/components/buttons/button_outline.dart';
 import 'package:flutter_coffee_shop/utils/const/my_size.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../utils/components/buttons/primary_button.dart';
+import '../../../utils/components/buttons/primary_button.dart';
 
 class MenuDetailPage extends StatefulWidget {
   const MenuDetailPage({super.key});
@@ -20,6 +20,8 @@ class MenuDetailPage extends StatefulWidget {
 }
 
 class _MenuDetailPageState extends State<MenuDetailPage> {
+  //  final provider = Provider.of<MenuDetailProvider>(context, listen: false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,7 +84,7 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Cappucino',
+                  'Cappuccino',
                   style: TextStyle(
                     color: kBlack,
                     fontSize: 20,
