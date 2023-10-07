@@ -48,6 +48,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // final provider = Provider.of<HomeViewModel>(context, listen: false);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -150,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                         final coffee = homeProvider.coffeeList[index];
                         return CardMenu(
                           menu: coffee.menu ?? 'default menu',
-                          rating: coffee.rating!.toDouble(),
+                          rating: coffee.rating ?? 0.0,
                           category: coffee.category ?? 'default category',
                           reviewer: coffee.reviewer ?? '000',
                           price: coffee.price!.toDouble(),

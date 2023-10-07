@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../utils/components/buttons/primary_button_icon.dart';
+import '../../../utils/formatter/money_formatter.dart';
 import '../../../utils/theme/my_color.dart';
 
 class CardMenu extends StatelessWidget {
@@ -28,6 +29,7 @@ class CardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final MoneyFormatter moneyFormatter = MoneyFormatter();
     return InkWell(
       onTap: onPressedCard,
       child: Container(
@@ -131,9 +133,11 @@ class CardMenu extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "\$ ${price.toString()}",
+                      moneyFormatter.formatRupiah(
+                        price,
+                      ),
                       style: const TextStyle(
-                        fontSize: 18,
+                        fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: Color(0xff2F4B4E),
                       ),
