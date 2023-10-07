@@ -1,8 +1,9 @@
 class CoffeeModel {
   late int? id;
   late String? menu;
-  late int? rating;
+  late double? rating;
   late String? category;
+  late String? label;
   late String? reviewer;
   late String? description;
   late int? price;
@@ -24,6 +25,7 @@ class CoffeeModel {
     menu = json['Menu'];
     rating = json['Rating'];
     category = json['Category'];
+    category = json['label'];
     reviewer = json['Reviewer'];
     description = json['Description'];
     price = json['Price'];
@@ -35,6 +37,7 @@ class CoffeeModel {
         "Menu": menu,
         "Rating": rating,
         "Category": category,
+        "label": label,
         "Reviewer": reviewer,
         "Description": description,
         "Price": price,
