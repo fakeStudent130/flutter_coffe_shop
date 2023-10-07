@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_coffee_shop/service/endpoint.dart';
 
@@ -20,6 +22,7 @@ class CoffeeService {
 
       return data;
     } catch (e) {
+      log(e.toString());
       throw Exception(e);
     }
   }
