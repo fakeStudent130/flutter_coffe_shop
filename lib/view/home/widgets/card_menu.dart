@@ -33,8 +33,6 @@ class CardMenu extends StatelessWidget {
     return InkWell(
       onTap: onPressedCard,
       child: Container(
-        width: 148,
-        height: 238,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: Colors.white,
@@ -150,6 +148,7 @@ class CardMenu extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 5),
           ],
         ),
       ),

@@ -25,7 +25,7 @@ class CoffeeModel {
     menu = json['Menu'];
     rating = json['Rating'];
     category = json['Category'];
-    category = json['label'];
+    label = json['label'];
     reviewer = json['Reviewer'];
     description = json['Description'];
     price = json['Price'];
