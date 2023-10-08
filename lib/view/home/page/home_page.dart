@@ -8,6 +8,8 @@ import 'package:flutter_coffee_shop/view/home/viewmodel/home_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/components/navigation/bottom_navbar.dart';
+import '../../../utils/theme/my_color.dart';
+import '../widgets/all_menu_widget.dart';
 import '../widgets/card_menu.dart';
 import '../widgets/card_promo.dart';
 import '../widgets/header_bar.dart';
@@ -21,6 +23,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final HomeViewModel _homeProvider = HomeViewModel();
   final TextEditingController _searchController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   late final FocusNode _searchFocusNode = FocusNode();
@@ -47,7 +50,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final provider = Provider.of<HomeViewModel>(context, listen: false);
+    final provider = Provider.of<HomeViewModel>(context, listen: false);
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -90,110 +93,79 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            const SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  const SizedBox(width: 30),
-                  PrimaryButton(
-                    teks: 'Cappuccino',
-                    customWidth: 150,
-                    customHeight: 50,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 8),
-                  PrimaryButton(
-                    teks: 'Machiato',
-                    customWidth: 125,
-                    customHeight: 50,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 8),
-                  PrimaryButton(
-                    teks: 'Latte',
-                    customWidth: 90,
-                    customHeight: 50,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 8),
-                  PrimaryButton(
-                    teks: 'Arabica',
-                    customWidth: 115,
-                    customHeight: 50,
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 30),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 2),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 30),
+                    buttonBuilder(const AllMenuWidget(), "all", 0),
+                    const SizedBox(width: 8),
+                    buttonBuilder(Container(), "Cappuccino", 1),
+                    const SizedBox(width: 8),
+                    buttonBuilder(const AllMenuWidget(), "Machiato", 2),
+                    const SizedBox(width: 8),
+                    buttonBuilder(Container(), "Latte", 3),
+                    const SizedBox(width: 8),
+                    buttonBuilder(Container(), "Americano", 4),
+                    const SizedBox(width: 30),
+                  ],
+                ),
               ),
             ),
-            Consumer<HomeViewModel>(
-              builder: (context, value, child) {
-                if (value.state == MyState.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (value.state == MyState.loaded) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: GridView.builder(
-                      itemCount: homeProvider.coffeeList.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 300,
-                        childAspectRatio: 0.7,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 20,
-                      ),
-                      itemBuilder: (context, index) {
-                        final coffee = homeProvider.coffeeList[index];
-                        return CardMenu(
-                          menu: coffee.menu ?? 'default menu',
-                          rating: coffee.rating ?? 0.0,
-                          category: coffee.category ?? 'default category',
-                          reviewer: coffee.reviewer ?? '000',
-                          price: coffee.price!.toDouble(),
-                          imageUrl: coffee.imgUrl ?? '',
-                          onPressedCard: () {
-                            Navigator.pushNamed(
-                              context,
-                              MenuDetailPage.routeName,
-                              arguments: coffee,
-                            );
-                          },
-                          onPressedIcon: () {
-                            //! buat disini untuk menambahkan item ke cart
-                          },
-                        );
-                      },
-                    ),
-                  );
-                } else if (value.state == MyState.failed) {
-                  return Center(
-                    child: Image.asset(
-                      'assets/images/404-error.png',
-                      width: 200,
-                      height: 200,
-                    ),
-                  );
-                } else {
-                  return Center(
-                    child: Image.asset(
-                      'assets/images/404-error.png',
-                      width: 200,
-                      height: 200,
-                    ),
-                  );
-                }
-              },
-            ),
+            if (provider.selectedIndex == 0) const AllMenuWidget(),
+            if (provider.selectedIndex == 1) Container(),
+            if (provider.selectedIndex == 2) Container(),
+            if (provider.selectedIndex == 3) Container(),
+            if (provider.selectedIndex == 4) Container(),
+            const SizedBox(height: 10),
           ],
         ),
       ),
       bottomNavigationBar: const BottomNavbar(
         currentIndex: 0,
+      ),
+    );
+  }
+
+  Widget buttonBuilder(Widget selectedButton, String title, int myIndex) {
+    final homeProvider = Provider.of<HomeViewModel>(context);
+
+    return GestureDetector(
+      onTap: () {
+        homeProvider.selectedIndex = myIndex;
+        _homeProvider.selectedIndex = myIndex;
+      },
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: homeProvider.selectedIndex == myIndex ? kBrown : kWhite,
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(0, 0),
+              color: Color.fromARGB(0.25.toInt(), 0, 0, 0).withOpacity(0.2),
+              blurRadius: 1,
+              spreadRadius: 1,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600,
+                color: homeProvider.selectedIndex == myIndex
+                    ? kWhite
+                    : const Color(0xff2F4B4E),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

@@ -5,10 +5,17 @@ import 'package:flutter_coffee_shop/utils/state/finite_state.dart';
 
 class HomeViewModel extends ChangeNotifier {
   MyState _state = MyState.initial;
+  int _selectedIndex = 0;
+  int get selectedIndex => _selectedIndex;
   final CoffeeService coffeeService = CoffeeService();
 
   late List<CoffeeModel> coffeeList = [];
   MyState get state => _state;
+
+  set selectedIndex(int index) {
+    _selectedIndex = index;
+    notifyListeners();
+  }
 
   void changeState(MyState state) {
     _state = state;
