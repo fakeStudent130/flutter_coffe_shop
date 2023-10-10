@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_coffee_shop/view/bag/bag_page.dart';
 import 'package:flutter_coffee_shop/view/favorited/favorite_page.dart';
 import 'package:flutter_coffee_shop/view/home/page/home_page.dart';
-import 'package:flutter_coffee_shop/view/notification/notification_page.dart';
+import 'package:flutter_coffee_shop/view/notification/page/notification_page.dart';
 import 'package:flutter_coffee_shop/view/onboarding/onboarding_page.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
 
