@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_coffee_shop/presentation/pages/menu_detail.dart';
-import 'package:flutter_coffee_shop/utils/components/buttons/primary_button.dart';
 import 'package:flutter_coffee_shop/utils/components/field/search_field.dart';
-import 'package:flutter_coffee_shop/utils/state/finite_state.dart';
-import 'package:flutter_coffee_shop/view/home/page/menu_detail.dart';
 import 'package:flutter_coffee_shop/view/home/viewmodel/home_view_model.dart';
 import 'package:provider/provider.dart';
-
 import '../../../utils/components/navigation/bottom_navbar.dart';
 import '../../../utils/theme/my_color.dart';
-import '../widgets/all_menu_widget.dart';
-import '../widgets/card_menu.dart';
+import '../widgets/by_category_widget.dart';
 import '../widgets/card_promo.dart';
 import '../widgets/header_bar.dart';
 
@@ -100,25 +94,26 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     const SizedBox(width: 30),
-                    buttonBuilder(const AllMenuWidget(), "all", 0),
-                    const SizedBox(width: 8),
-                    buttonBuilder(Container(), "Cappuccino", 1),
-                    const SizedBox(width: 8),
-                    buttonBuilder(const AllMenuWidget(), "Machiato", 2),
-                    const SizedBox(width: 8),
-                    buttonBuilder(Container(), "Latte", 3),
-                    const SizedBox(width: 8),
-                    buttonBuilder(Container(), "Americano", 4),
+                    buttonBuilder(const MenuByCategoryWidget(), "AII", 0),
+                    const SizedBox(width: 10),
+                    buttonBuilder(
+                        const MenuByCategoryWidget(), "Cappuchino", 1),
+                    const SizedBox(width: 10),
+                    buttonBuilder(const MenuByCategoryWidget(), "Machiato", 2),
+                    const SizedBox(width: 10),
+                    buttonBuilder(const MenuByCategoryWidget(), "Latte", 3),
+                    const SizedBox(width: 10),
+                    buttonBuilder(const MenuByCategoryWidget(), "Americano", 4),
                     const SizedBox(width: 30),
                   ],
                 ),
               ),
             ),
-            if (provider.selectedIndex == 0) const AllMenuWidget(),
-            if (provider.selectedIndex == 1) Container(),
-            if (provider.selectedIndex == 2) Container(),
-            if (provider.selectedIndex == 3) Container(),
-            if (provider.selectedIndex == 4) Container(),
+            if (provider.selectedIndex == 0) const MenuByCategoryWidget(),
+            if (provider.selectedIndex == 1) const MenuByCategoryWidget(),
+            if (provider.selectedIndex == 2) const MenuByCategoryWidget(),
+            if (provider.selectedIndex == 3) const MenuByCategoryWidget(),
+            if (provider.selectedIndex == 4) const MenuByCategoryWidget(),
             const SizedBox(height: 10),
           ],
         ),
@@ -133,9 +128,10 @@ class _HomePageState extends State<HomePage> {
     final homeProvider = Provider.of<HomeViewModel>(context);
 
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         homeProvider.selectedIndex = myIndex;
         _homeProvider.selectedIndex = myIndex;
+        await homeProvider.getMenuByCategory(title);
       },
       child: Container(
         height: 50,
