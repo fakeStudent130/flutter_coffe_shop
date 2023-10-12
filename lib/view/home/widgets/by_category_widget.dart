@@ -7,14 +7,16 @@ import '../../../model/coffee_model.dart';
 import '../../../utils/state/finite_state.dart';
 import '../viewmodel/home_view_model.dart';
 
-class AllMenuWidget extends StatefulWidget {
-  const AllMenuWidget({super.key});
+class MenuByCategoryWidget extends StatefulWidget {
+  const MenuByCategoryWidget({
+    super.key,
+  });
 
   @override
-  State<AllMenuWidget> createState() => _AllMenuWidgetState();
+  State<MenuByCategoryWidget> createState() => _MenuByCategoryWidgetState();
 }
 
-class _AllMenuWidgetState extends State<AllMenuWidget> {
+class _MenuByCategoryWidgetState extends State<MenuByCategoryWidget> {
   CoffeeModel? homeProvider;
 
   @override
