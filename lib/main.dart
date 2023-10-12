@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee_shop/view/bag/bag_page.dart';
 import 'package:flutter_coffee_shop/view/favorited/favorite_page.dart';
-import 'package:flutter_coffee_shop/view/home/page/menu_detail.dart';
+import 'package:flutter_coffee_shop/view/home/page/detail_menu.dart';
 import 'package:flutter_coffee_shop/view/onboarding/onboarding_page.dart';
 import 'package:flutter_coffee_shop/utils/theme/style_theme.dart';
 import 'package:provider/provider.dart';
 
 import 'view/home/page/home_page.dart';
+import 'view/home/viewmodel/detail_menu_view_model.dart';
 import 'view/home/viewmodel/home_view_model.dart';
 import 'view/notification/page/notification_page.dart';
 
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => HomeViewModel()),
+        ChangeNotifierProvider(create: (_) => DetailMenuViewModel())
       ],
       child: MaterialApp(
           title: 'Flutter Coffee',
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
           routes: {
             OnboardingPage.routeName: (context) => const OnboardingPage(),
             HomePage.routeName: (context) => const HomePage(),
-            MenuDetailPage.routeName: (context) => const MenuDetailPage(),
+            DetailMenuPage.routeName: (context) => const DetailMenuPage(),
             FavoritePage.routeName: (context) => const FavoritePage(),
             BagPage.routeName: (context) => const BagPage(),
             NotificationPage.routeName: (context) => const NotificationPage(),

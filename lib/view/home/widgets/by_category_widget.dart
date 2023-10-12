@@ -1,11 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/view/home/page/menu_detail.dart';
-import 'package:flutter_coffee_shop/view/home/widgets/card_menu.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../model/coffee_model.dart';
 import '../../../utils/state/finite_state.dart';
+import '../page/detail_menu.dart';
 import '../viewmodel/home_view_model.dart';
+import 'card_menu.dart';
 
 class MenuByCategoryWidget extends StatefulWidget {
   const MenuByCategoryWidget({
@@ -58,9 +61,10 @@ class _MenuByCategoryWidgetState extends State<MenuByCategoryWidget> {
                     onPressedCard: () {
                       Navigator.pushNamed(
                         context,
-                        MenuDetailPage.routeName,
+                        DetailMenuPage.routeName,
                         arguments: coffee,
                       );
+                      log('id: ${coffee.id}');
                     },
                     onPressedIcon: () {
                       //! buat disini untuk menambahkan item ke cart
