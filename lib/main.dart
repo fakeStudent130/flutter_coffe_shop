@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_shop/view/auth/login_page.dart';
+import 'package:flutter_coffee_shop/view/auth/regis_page.dart';
 import 'package:flutter_coffee_shop/view/bag/bag_page.dart';
 import 'package:flutter_coffee_shop/view/favorited/favorite_page.dart';
 import 'package:flutter_coffee_shop/view/home/page/detail_menu.dart';
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
           initialRoute: OnboardingPage.routeName,
           routes: {
             OnboardingPage.routeName: (context) => const OnboardingPage(),
+            LoginPage.routeName: (context) => const LoginPage(),
+            RegisPage.routeName: (context) => const RegisPage(),
             HomePage.routeName: (context) => const HomePage(),
             DetailMenuPage.routeName: (context) => const DetailMenuPage(),
             FavoritePage.routeName: (context) => const FavoritePage(),

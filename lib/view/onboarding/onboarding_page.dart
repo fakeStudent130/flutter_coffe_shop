@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_coffee_shop/view/auth/login_page.dart';
 import 'package:flutter_coffee_shop/view/home/page/home_page.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
-
 import '../../utils/components/buttons/primary_button.dart';
 import '../../utils/const/my_size.dart';
 
@@ -50,7 +50,7 @@ class OnboardingPage extends StatelessWidget {
             child: PrimaryButton(
               teks: 'Get Started',
               onPressed: () {
-                Navigator.pushNamed(context, HomePage.routeName);
+                Navigator.pushNamed(context, LoginPage.routeName);
               },
             ),
           ),
