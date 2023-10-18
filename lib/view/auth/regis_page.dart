@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/presentation/pages/home_page.dart';
-import 'package:flutter_coffee_shop/presentation/pages/login_page.dart';
 import 'package:flutter_coffee_shop/utils/components/buttons/primary_button.dart';
 import 'package:flutter_coffee_shop/utils/components/field/search_field.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
+import 'package:flutter_coffee_shop/view/auth/login_page.dart';
+import 'package:flutter_coffee_shop/view/home/page/home_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
