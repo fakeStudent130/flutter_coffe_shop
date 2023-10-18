@@ -1,27 +1,36 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/presentation/widgets/menu_icon.dart';
+import 'package:flutter_coffee_shop/model/coffee_model.dart';
+import 'package:flutter_coffee_shop/view/home/viewmodel/detail_menu_view_model.dart';
+import 'package:flutter_coffee_shop/view/home/widgets/menu_icon.dart';
 import 'package:flutter_coffee_shop/utils/components/buttons/button_outline.dart';
 import 'package:flutter_coffee_shop/utils/const/my_size.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
-import '../../utils/components/buttons/primary_button.dart';
+import '../../../utils/components/buttons/primary_button.dart';
+import '../../../utils/formatter/money_formatter.dart';
 
-class MenuDetailPage extends StatefulWidget {
-  const MenuDetailPage({super.key});
+class DetailMenuPage extends StatefulWidget {
+  const DetailMenuPage({super.key});
 
-  static const String routeName = '/menudetail';
+  static const String routeName = '/detailmenu';
 
   @override
-  State<MenuDetailPage> createState() => _MenuDetailPageState();
+  State<DetailMenuPage> createState() => _DetailMenuPageState();
 }
 
-class _MenuDetailPageState extends State<MenuDetailPage> {
+class _DetailMenuPageState extends State<DetailMenuPage> {
   @override
   Widget build(BuildContext context) {
+    final CoffeeModel args =
+        ModalRoute.of(context)!.settings.arguments as CoffeeModel;
+
+    final MoneyFormatter moneyFormatter = MoneyFormatter();
+
     return Scaffold(
       backgroundColor: kWhite2,
       appBar: AppBar(
@@ -48,16 +57,31 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
         ),
         centerTitle: true,
         actions: [
-          GestureDetector(
-            child: Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: SvgPicture.asset(
-                'assets/icons/Heart.svg',
-                colorFilter: const ColorFilter.mode(kBlack, BlendMode.srcIn),
-              ),
-            ),
-            onTap: () {
-              log('Tap Favorited Button');
+          Consumer<DetailMenuViewModel>(
+            builder: (context, value, child) {
+              return GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 30),
+                  //! versi ysng menggunakan svg
+                  // child: SvgPicture.asset(
+                  //   'assets/icons/Heart.svg',
+                  //   colorFilter: value.isFavorite
+                  //       ? const ColorFilter.mode(kRed, BlendMode.srcIn)
+                  //       : const ColorFilter.mode(kBlack, BlendMode.srcIn),
+                  // ),
+
+                  child: Icon(
+                    value.isFavorite
+                        ? Icons.favorite
+                        : Icons.favorite_border_outlined,
+                    color: value.iconColor,
+                  ),
+                ),
+                onTap: () {
+                  value.changeFavorite();
+                  log('Tap Favorite');
+                },
+              );
             },
           ),
         ],
@@ -73,26 +97,28 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                 const SizedBox(height: 25),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(16.0),
-                  child: const Image(
-                    image: NetworkImage('https://picsum.photos/id/63/200/300'),
+                  child: Image(
+                    image: NetworkImage(
+                      args.imgUrl!,
+                    ),
                     width: double.infinity,
                     height: 226,
                     fit: BoxFit.cover,
                   ),
                 ),
                 const SizedBox(height: 20),
-                const Text(
-                  'Cappucino',
-                  style: TextStyle(
+                Text(
+                  args.category!,
+                  style: const TextStyle(
                     color: kBlack,
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'with Chocolate',
-                  style: TextStyle(
+                Text(
+                  args.menu!,
+                  style: const TextStyle(
                     color: kGrey3,
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -112,18 +138,18 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                               const ColorFilter.mode(kYellow, BlendMode.srcIn),
                         ),
                         const SizedBox(width: 4),
-                        const Text(
-                          '4.8',
-                          style: TextStyle(
+                        Text(
+                          args.rating.toString(),
+                          style: const TextStyle(
                             color: kBlack,
                             fontSize: 20,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         const SizedBox(width: 4),
-                        const Text(
-                          '(230)',
-                          style: TextStyle(
+                        Text(
+                          '(${args.reviewer})',
+                          style: const TextStyle(
                             color: kGrey3,
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -171,25 +197,25 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                const ReadMoreText(
-                  'A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the fo A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the fo A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the fo A cappuccino is an approximately 150 ml (5 oz) beverage, with 25 ml of espresso coffee and 85ml of fresh milk the fo',
+                ReadMoreText(
+                  args.description!,
                   trimLines: 3,
                   colorClickableText: kBrown,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Read More',
                   trimExpandedText: 'Show Less',
                   textAlign: TextAlign.justify,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: kGrey3,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
-                  moreStyle: TextStyle(
+                  moreStyle: const TextStyle(
                     color: kBrown,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
-                  lessStyle: TextStyle(
+                  lessStyle: const TextStyle(
                     color: kBrown,
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
@@ -233,13 +259,13 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
               child: Container(
-                width: 66,
+                width: MediaQuery.sizeOf(context).width * 0.3,
                 color: kWhite,
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       "Price",
                       style: TextStyle(
                         color: kGrey3,
@@ -247,12 +273,17 @@ class _MenuDetailPageState extends State<MenuDetailPage> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Text(
-                      '\$ 4.53',
-                      style: TextStyle(
-                        color: kBrown,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
+                    Expanded(
+                      child: Text(
+                        // ' ${args.price}',
+                        moneyFormatter.formatRupiah(
+                          args.price!.toDouble(),
+                        ),
+                        style: TextStyle(
+                          color: kBrown,
+                          fontSize: MediaQuery.sizeOf(context).width * 0.05,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ],

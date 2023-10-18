@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coffee_shop/presentation/pages/bag_page.dart';
-import 'package:flutter_coffee_shop/presentation/pages/favorite_page.dart';
-import 'package:flutter_coffee_shop/presentation/pages/home_page.dart';
-import 'package:flutter_coffee_shop/presentation/pages/notification_page.dart';
-import 'package:flutter_coffee_shop/presentation/pages/onboarding_page.dart';
+import 'package:flutter_coffee_shop/view/bag/bag_page.dart';
+import 'package:flutter_coffee_shop/view/favorited/favorite_page.dart';
+import 'package:flutter_coffee_shop/view/home/page/home_page.dart';
+import 'package:flutter_coffee_shop/view/notification/page/notification_page.dart';
+import 'package:flutter_coffee_shop/view/onboarding/onboarding_page.dart';
 import 'package:flutter_coffee_shop/utils/theme/my_color.dart';
 
 class BottomNavbar extends StatefulWidget {
